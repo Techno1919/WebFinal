@@ -2,13 +2,9 @@ const express = require('express');
 const pug = require('pug');
 const routes = require('./routes/routes');
 const path = require('path');
-const bcrypt = require('bcryptjs');
 const expressSession = require('express-session');
 
 const app = express();
-
-let salt = bcrypt.genSaltSync(10);
-let hash = bcrypt.hashSync('bacon', salt);
 
 app.use(expressSession({
     secret: 'whatever',
@@ -35,7 +31,7 @@ const checkAuth = (req, res, next) => {
 
 
 app.get('/', routes.index);
-app.post()
+app.post('/login', routes.login);
 
 app.listen(3000);
 
