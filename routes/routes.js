@@ -26,3 +26,8 @@ let loginSchema = mongoose.Schema({
 });
 
 let Login = mongoose.model('Login_Collection', loginSchema);
+
+exports.index('/', (req, res) => {
+    res.render('login');
+});
+
