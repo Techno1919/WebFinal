@@ -15,7 +15,7 @@ let mdb = mongoose.connection;
 mdb.on('error', console.error.bind(console, 'Connection Error'));
 mdb.once('open', callback => {});
 
-let loginSchema = mongoose.Schema({
+let personInfoSchema = mongoose.Schema({
     username: String,
     password: String,
     email: String,
@@ -25,25 +25,28 @@ let loginSchema = mongoose.Schema({
     answer3 : String
 });
 
-let Login = mongoose.model('Login_Collection', loginSchema);
+let PersonInfo = mongoose.model('Login_Collection', personInfoSchema);
 let salt = bcrypt.genSaltSync(10);
 
+exports.userpage = (req, res) => {
+    res.render('userpage');
+}
 
-exports.index((req, res) => {
-    res.render('login');
-});
+exports.index = (req, res) => {
+    res.render('index');
+};
 
-exports.login((req, res) => {
-    const usernameQuery = Login.where({username: req.body.username});
+exports.login = (req, res) => {
+    const usernameQuery = PersonInfo.where({username: req.body.username});
     if(!(usernameQuery == null))
     {
-        const username = Login.find(usernameQuery, (err, login) => {
+        const username = PersonInfo.find(usernameQuery, (err, login) => {
             if(err) return console.error(err);
         });
-        const passwordQuery = Login.where({password: req.body.password});
+        const passwordQuery = PersonInfo.where({password: req.body.password});
         if(!(passwordQuery == null))
         {
-            const password = Login.find(passwordQuery, (err, login) => {
+            const password = PersonInfo.find(passwordQuery, (err, login) => {
                 if(err) return console.error(err);
             });
             const hashedPassword = bcrypt.hashSync(password, salt);
@@ -60,4 +63,42 @@ exports.login((req, res) => {
         }
     }
     
-})
+};
+
+exports.createAccount = (req, res) => {
+    res.render('create');
+}
+
+exports.create = (req, res) => {
+    let person = new PersonInfo({
+        username: req.body.username,
+        password: req.body.password,
+        email: req.body.email,
+        age: req.body.age,
+        answer1 : req.body.question1,
+        answer2 : req.body.question2,
+        answer3 : req.body.question3
+    });
+
+    person.save((err, person) => {
+        if(err) return console.error(err);
+        console.log('Account added');
+    });
+
+    res.render('userpage', {
+        person
+    });
+};
+
+exports.logout = (req, res) => {
+    req.session.destroy(err => {
+        if(err) 
+        {
+            console.log(err);
+        }
+        else
+        {
+            res.redirect('/');
+        }
+    })
+}

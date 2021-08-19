@@ -31,7 +31,11 @@ const checkAuth = (req, res, next) => {
 
 
 app.get('/', routes.index);
-app.post('/login', routes.login);
+app.get('/userpage', routes.userpage);
+app.post('/userpage', urlencodedParser, routes.login);
+app.get('/create', routes.createAccount);
+app.post('/create', urlencodedParser, routes.create);
+app.get('/logout', routes.logout);
 
 app.listen(3000);
 

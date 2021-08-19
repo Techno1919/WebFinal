@@ -4,13 +4,13 @@ block content
     h3=title 
     form(id= 'account' method='POST' action='/login')
         p Username: 
-            input(type='text' name='username' value = person.username)
+            input(type='text' name='username' value=person.username)
         p Password: 
-            input(type='text' name='password' value = person.password)
+            input(type='text' name='password' value=person.password)
         p Age: 
-            input(type='text' name='age' value = person.age)
+            input(type='text' name='age' value=person.age)
         p Email:
-            input(type='text' name='email' value = person.email)
+            input(type='text' name='email' value=person.email)
         p Question 1) What Super Power Do You Want Most?
             select(name="question1")
                 option(select=person.question1)=person.question1 
