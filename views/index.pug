@@ -1,0 +1,16 @@
+extends layout 
+
+block content
+    //p Hello Welcome To Our Site
+    h3=title 
+    form(method='POST' action='/login')
+        p Username:
+            br 
+            input(type='text' name='username')
+        p Password:
+            br 
+            input(type='text' name='password')
+        p 
+            input(type='submit' value='Login')
+        p 
+            a(href='/create') Create Account

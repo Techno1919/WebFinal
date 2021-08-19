@@ -2,37 +2,32 @@ extends layout
 
 block content 
     h3=title 
-    form(id= 'account' method='POST' action='/login')
+    form(id = 'account' method='POST' action='/create')
         p Username: 
-            input(type='text' name='username' value = person.username)
+            input(type='text' name='username')
         p Password: 
-            input(type='text' name='password' value = person.password)
+            input(type='text' name='password')
         p Age: 
-            input(type='text' name='age' value = person.age)
+            input(type='text' name='age')
         p Email:
-            input(type='text' name='email' value = person.email)
+            input(type='text' name='email')
         p Question 1) What Super Power Do You Want Most?
             select(name="question1")
-                option(select=person.question1)=person.question1 
                 option(value="Smell") Super Smell
                 option(value="Hear") Super Hearing
                 option(value="Thermal") Thermal Vision 
                 option(value="Taste") Super Taste 
         p Question 2) Which Super Power Would You Want?
             select(name="question2")
-                option(select=person.question2)=person.question2
                 option(value="Lightning") Control Lightning
                 option(value="Sound") Silence Sound
                 option(value="Telekinesis") Telekinesis
                 option(value="Clones") Can Make Clones
-        p Question 3) Which Super Power Would You Most Like To Have?:
+        p Question 3) Which Super Power Would You Most Like To Have?
             select(name="question3")
-                option(select=person.question3)=person.question3 
                 option(value="Time") Rewind Time 
                 option(value="Laugh") Make People Laugh 
                 option(value="Notices") No One Notices You 
                 option(value="Truth") Questions Answered Truthfully
         p 
-            input(type='submit' value='Update Account')
-        p 
-            a(href='/logout') Logout
+            input(type='submit' value='Create Account')
