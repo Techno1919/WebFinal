@@ -2,11 +2,11 @@ extends layout
 
 block content 
     h3=title 
-    form(id= 'account' method='POST' action='/login')
+    form(id= 'account' method='POST' action='/userpage')
         p Username: 
             input(type='text' name='username' value=person.username)
         p Password: 
-            input(type='text' name='password' value=person.password)
+            input(type='text' name='password')
         p Age: 
             input(type='text' name='age' value=person.age)
         p Email:
