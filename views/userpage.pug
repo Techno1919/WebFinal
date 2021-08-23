@@ -2,7 +2,8 @@ extends layout
 
 block content 
     h3=title 
-    form(id= 'account' method='POST' action='/userpage')
+    h4=`You last visited on the ${visited} of this month.`
+    form(id= 'account' method='POST' action='/userpage/' + person.id)
         p Username: 
             input(type='text' name='username' value=person.username)
         p Password: 
