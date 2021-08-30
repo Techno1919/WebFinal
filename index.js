@@ -9,6 +9,12 @@ const app = express();
 
 app.use(cookieParser());
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
 app.use(expressSession({
     secret: 'whatever',
     saveUninitialized: true,
@@ -40,6 +46,7 @@ app.post('/login', urlencodedParser, routes.login);
 app.get('/create', routes.createAccount);
 app.post('/create', urlencodedParser, routes.create);
 app.get('/logout', routes.logout);
+app.get('/api', routes.api);
 
 app.listen(3000);
 

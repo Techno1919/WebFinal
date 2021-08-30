@@ -150,3 +150,12 @@ exports.logout = (req, res) => {
         }
     })
 }
+
+exports.api = (req, res) => {
+    PersonInfo.find({}, {answer1: 1, answer2: 1, answer3: 1}, (err, questions) => {
+        res.json(questions);
+    });
+}
+// .exec((err, doc) => {
+//     res.json(doc);
+// })
